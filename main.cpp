@@ -202,10 +202,24 @@ void rewardRandomItems(Stats& player) {
         std::cout<< "\n";
     }
 }
-void play(Stats player,Stats enemy,bool regen){
-    GRand r;
-    GRand f;
-    gun shotGun(1+r.i(3),1+f.i(3));
+
+int fakeAmmos;
+int realAmmos;
+gun shotGun(fakeAmmos,realAmmos);
+void play(Stats player,Stats enemy,bool regen,bool refill){
+    if(refill){
+        GRand r;
+        GRand f;
+        fakeAmmos={1+r.i(3)};
+        realAmmos={1+f.i(3)};
+        shotGun=gun (fakeAmmos,realAmmos);
+    }
+    else{
+        fakeAmmos={shotGun.getFakeAmmo()};
+        realAmmos={shotGun.getRealAmmo()};
+        shotGun=gun (fakeAmmos,realAmmos);
+    }
+
     if(regen){
         std::cout << dye::aqua_on_red("HELLO,IT'S A SIMPLE GAME\nIF YOU LOSE I WILL GET YOUR LIFE\nIF I LOSE YOU WILL GET ITEMS!\n");
         player.setHealth(100);
@@ -236,7 +250,7 @@ void play(Stats player,Stats enemy,bool regen){
                 player.useItem(shotGun);
                 break;
             default:
-                play(player,enemy,false);
+                play(player,enemy,false,false);
                 break;
 
         }
@@ -244,19 +258,19 @@ void play(Stats player,Stats enemy,bool regen){
 
         if (player.getHealth() <= 0) {
             std::cout << dye::black_on_red("YOU LOST!\n");
-            play(player,enemy,true);
+            play(player,enemy,true,true);
             break;
         } else if (enemy.getHealth() <= 0) {
             std::cout << dye::black_on_green("VICTORY!\n");
             rewardRandomItems(player);
-            play(player,enemy,true);
+            play(player,enemy,true,true);
             break;
         }
 
         if (shotGun.totalAmmo.empty()) {
             sleep(1);
             std::cout << dye::yellow("Out of Ammo! Next Round !.\n");
-            play(player,enemy,false);
+            play(player,enemy,false,true);
             break;
         }
     }
@@ -267,7 +281,7 @@ void intro(){
     Stats enemy("Enemy",150,true);
     player.addItem(Item (Item::HEALING, 50, "Potion", EPIC));
     player.addItem(Item (Item::SEE, 50, "Magnifying Glass", RARE));
-    play(player,enemy,true);
+    play(player,enemy,true,true);
 }
 
 int main(){
