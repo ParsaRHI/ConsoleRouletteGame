@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/ParsaRH/CLionProjects/ConsoleGame/cmake-build-debug",
-		"source" : "C:/Users/ParsaRH/CLionProjects/ConsoleGame"
+		"build" : "C:/Users/ParsaRH/CLionProjects/ConsoleGame/ConsoleRouletteGame/cmake-build-debug",
+		"source" : "C:/Users/ParsaRH/CLionProjects/ConsoleGame/ConsoleRouletteGame"
 	},
 	"version" : 
 	{
