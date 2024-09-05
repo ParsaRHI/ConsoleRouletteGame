@@ -231,8 +231,8 @@ void play(Stats player,Stats enemy,bool regen,bool refill){
         sleep(1);
         std::cout << dye::red("Enemy health: ") << dye::red(enemy.getHealth()) << "\n";
         sleep(1);
-            std::cout << "Total Ammo: " << shotGun.totalAmmo.size()<<dye::bright_white("\nFake Ammos: ")
-                      <<shotGun.getFakeAmmo()<<dye::yellow("\nReal Ammos:")<<shotGun.getRealAmmo() <<"\n";
+            std::cout << "Total Ammo:" << shotGun.totalAmmo.size()<<dye::bright_white("\nFake Ammos: ")
+                      <<shotGun.getFakeAmmo()<<dye::yellow("\nReal Ammos: ")<<shotGun.getRealAmmo() <<"\n";
 
         sleep(1);
         std::cout << "1-Shoot Enemy\n2-Shoot Self\n3-Use Item";
